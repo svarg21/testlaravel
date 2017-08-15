@@ -11,7 +11,7 @@
                 <hr>
                 <h3>Комментарий</h3>
                 @if (!Auth::guest())
-                    <form action="/admin/post/{{$post->alias}}/comment" method="post">
+                    <form class="form-comment" action="/admin/post/{{$post->alias}}/comment" method="post">
                         {{csrf_field()}}
                         <div class="form-group">
                             <label for="comments">Напишите комментарий</label>
@@ -21,21 +21,29 @@
                     </form>
                 @endif
                 @foreach($post->getPostComment()->get() as $comment)
-                    <span class="user">{{$comment->user->name}}</span> - <span class="data">{{$comment->created_at}}</span>
+                    <span class="user">{{$comment->user->name}}</span> - <span
+                            class="data">{{$comment->created_at}}</span>
                     <div id="comment_{{$comment->id}}">
                         {{$comment->content}}<br>
                     </div>
                     @if(Auth::id()==$comment->user_id)
-                        <button onclick="editComment(this,event)" id="comment_edit_{{$comment->id}}">
-                            Редактировать коментарий
-                        </button><br>
-                        <form action="/admin/post/{{$post->alias}}/comment/{{$comment->id}}" method="post">
-                            {{csrf_field()}}
-                            {!! method_field('delete') !!}
-                            <div class="form-group">
-                                <input type="submit" value="Удалить коментарий">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button class="btn btn-primary" onclick="editComment(this,event)" id="comment_edit_{{$comment->id}}">
+                                    Редактировать коментарий
+                                </button>
                             </div>
-                        </form>
+                            <div class="col-md-6">
+                                <form class="form-comment"
+                                      action="/admin/post/{{$post->alias}}/comment/{{$comment->id}}" method="post">
+                                    {{csrf_field()}}
+                                    {!! method_field('delete') !!}
+                                    <div class="form-group">
+                                        <input class="btn btn-danger" type="submit" value="Удалить коментарий">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     @endif
                 @endforeach
 
@@ -49,7 +57,7 @@
                     console.log(str.slice(startStr, endStr))
                     var element = document.getElementById('comment_' + str.slice(startStr, endStr));
                     var text = element.innerHTML;
-                    element.innerHTML = '<form action="/admin/post/{{$post->alias}}/comment/' + str.slice(startStr, endStr) +
+                    element.innerHTML = '<form class="form-comment" action="/admin/post/{{$post->alias}}/comment/' + str.slice(startStr, endStr) +
                         '" method="post"><div class="form-group">{{csrf_field()}}{!! method_field("patch") !!}<textarea name="comment" class="form-control">'
                         + text + '</textarea><input type="submit"></div></form>';
                 }
