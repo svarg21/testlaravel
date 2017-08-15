@@ -71,6 +71,7 @@ class PostsController extends Controller
     public function destroy(Post $post)
     {
         if(Auth::id()==$post->user_id) {
+            $post->getPostComment()->delete();
             $post->delete();
             return redirect('/admin');
         }
