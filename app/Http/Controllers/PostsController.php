@@ -8,11 +8,10 @@ use Illuminate\Support\Facades\Auth;
 class PostsController extends Controller
 {
     function index(){
-        $posts = Post::all();
+        $posts = Post::where('public','true')->get();
         return view('index',compact('posts'));
     }
     function show(Post $post) {
-//        $post = Post::find($id);
         return view('post',compact('post'));
     }
     function create(){
@@ -55,7 +54,6 @@ class PostsController extends Controller
                 'alias' => 'required',
                 'content' => 'required',
             ]);
-//        $post = Post::find($id);
             $post->title = request('title');
             $post->description = request('description');
             $post->alias = request('alias');
