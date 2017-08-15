@@ -63,5 +63,6 @@
                 }
             </script>
         </div>
+    </div>
 @endsection
 
