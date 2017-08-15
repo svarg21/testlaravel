@@ -5,6 +5,11 @@
   padding: 20px 40px;
 }
 
+.post .user,
+.post .data {
+  font-size: 13px;
+}
+
 .post h2 {
   text-transform: uppercase;
 }

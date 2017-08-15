@@ -1,17 +1,16 @@
 .post {
   background: #fff;
   padding: 20px 40px;
+  .user, .data{
+    font-size: 13px;
+  }
+  h2 {
+    text-transform: uppercase;
+  }
+  p {
+    font-size: 16px;
+  }
+  form {
+    margin: 10px 0;
+  }
 }
-.post h2 {
-  text-transform: uppercase;
-}
-
-.post p {
-  font-size: 16px;
-}
-
-.post form {
-  margin: 10px 0;
-}
-
-form {}

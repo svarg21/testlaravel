@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    public function getCommentUser(){
-        return $this->belongsToMany('App\User');
+    public function user(){
+        return $this->belongsTo('App\User');
     }
-    public function getCommentPost(){
-        return $this->belongsToMany('App\Post');
+    public function post(){
+        return $this->belongsTo('App\Post');
     }
 }

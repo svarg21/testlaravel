@@ -21,7 +21,7 @@
                     </form>
                 @endif
                 @foreach($post->getPostComment()->get() as $comment)
-                    <span class="user">{{$comment->user_id}}</span> - <span class="data">{{$comment->created_at}}</span>
+                    <span class="user">{{$comment->user->name}}</span> - <span class="data">{{$comment->created_at}}</span>
                     <div id="comment_{{$comment->id}}">
                         {{$comment->content}}<br>
                     </div>
