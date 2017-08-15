@@ -14,7 +14,7 @@ class UpdatePostTable extends Migration
     public function up()
     {
         Schema::table('posts',function (Blueprint $table){
-            $table->string('alias');
+            $table->string('alias')->unique();
             $table->boolean('public');
         });
     }

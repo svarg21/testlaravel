@@ -27,7 +27,8 @@ class AddForeignKeyPostTable extends Migration
     public function down()
     {
         Schema::table('posts',function (Blueprint $table){
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+//            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->dropForeign('posts_user_id_foreign');
         });
     }
 }
